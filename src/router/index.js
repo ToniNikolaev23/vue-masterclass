@@ -2,6 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import PageHome from "../pages/PageHome";
 import PageThreadShow from "../pages/PageThreadShow";
+import PageThreadCreate from '../pages/PageThreadCreate';
 import Category from "../pages/PageCategory";
 import Forum from "../pages/PageForum";
 import Profile from '../pages/PageProfile';
@@ -26,6 +27,12 @@ export default new Router({
       path: "/forum/:id",
       name: "Forum",
       component: Forum,
+      props: true
+    },
+    {
+      path: '/thread/create',
+      name: 'ThreadCreate',
+      component: PageThreadCreate,
       props: true
     },
     {
