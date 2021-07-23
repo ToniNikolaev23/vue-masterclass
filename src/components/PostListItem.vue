@@ -11,9 +11,18 @@
     </div>
 
     <div class="post-content">
-      <div>
+      <template v-if="!editing">
+        <div>
         {{ post.text }}
+        </div>
+      <a @click.prevent="editing = true" href="#" style="margin-left: auto;" class="link-unstyled" title="Make a change"><i class="fa fa-pencil">Edit</i></a>
+      </template>
+      <div v-else>
+        <PostEditor 
+        :post="post"
+        @save="editing = false" />
       </div>
+      
     </div>
 
     <div class="post-date text-faded">
@@ -24,11 +33,20 @@
 
 <script>
 import {countObjectProperties} from '../helpers/index'
+import PostEditor from './PostEditor.vue'
 export default {
+  components: {
+    PostEditor
+  },
   props: {
     post: {
       required: true,
       type: Object
+    }
+  },
+  data() {
+    return {
+      editing: false
     }
   },
   computed: {
